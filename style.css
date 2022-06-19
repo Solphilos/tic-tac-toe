@@ -21,7 +21,8 @@ body, html {
     width: 80%;
     border: solid grey 1px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -43,10 +44,15 @@ body, html {
     
 }
 
-.choiceX {
-
+.button_box {
+    width: 20%;
+    height: 12%;
+    display: flex;
+    justify-content: space-between;
+    
 }
 
-.choiceO {
-    
+.choiceX, .choiceO {
+    height: 100%;
+    width: 47%;
 }
