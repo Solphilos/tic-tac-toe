@@ -16,6 +16,15 @@ const gameBoard = (function() {
          const axis9 = document.querySelector('[data-axis="9"]');
 
 
+function declareWinner(one, two, three, winner) {
+if (one.textContent === 'X' && two.textContent === 'X' && three.textContent === 'X') {    // this works. make it a seperate module. 
+    alert(`${winner} wins!`)
+}
+}
+
+
+
+
          chooseX = () => {
             let chosen = document.querySelectorAll(':hover')
             let tempArray = Array.from(chosen);
@@ -29,13 +38,9 @@ const gameBoard = (function() {
             if (text === 'O') {
                 gridSquare.innerHTML = 'O';
             } 
-            console.log(axis9.textContent)       //  if axis.9 textContent = 'X', do some things that make winning order
-
-if (axis1.textContent === 'X' && axis2.textContent === 'X' && axis3.textContent === 'X') {    // this works. make it a seperate module. 
-    alert('X wins!')
-}
-    
-         }   
+            declareWinner(axis1, axis2, axis3, 'X')
+            
+        }   
             
         
          chooseO = () => {
@@ -49,7 +54,8 @@ if (axis1.textContent === 'X' && axis2.textContent === 'X' && axis3.textContent 
             gridSquare.innerHTML = "O"
             if (text === 'X') {
                 gridSquare.innerHTML = 'X';
-            } 
+            }
+             
          }
         
         
@@ -86,8 +92,13 @@ if (axis1.textContent === 'X' && axis2.textContent === 'X' && axis3.textContent 
 
 })();
 
-gameBoard.addListeners();
 
+
+const gamePlay = (function() {
+    
+})()
+
+gameBoard.addListeners();
 
 
 
