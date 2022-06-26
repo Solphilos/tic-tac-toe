@@ -26,6 +26,50 @@ body, html {
     align-items: center;
 }
 
+.start_box {
+    height:  500px;
+    width: 900px;
+    margin: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: grey;
+    position: absolute;
+    top: 95px;
+    display: flex;
+    color: white;
+    font-size: 2rem;
+}
+
+
+.winner {
+    height:  500px;
+    width: 900px;
+    margin: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: grey;
+    position: absolute;
+    top: 95px;
+    display: none;
+    color: white;
+    font-size: 7rem;
+    
+}
+
+
+
+
+.winner button {
+    height: 50px;
+    width: 90px;
+    font-size: 1rem;
+    position: fixed;
+    top: 500px;
+    left: 750px;
+}
+
 .grid_container {
     height: 450px;
     width:  450px;
