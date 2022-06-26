@@ -1,5 +1,6 @@
 
 //////////////////////////////////////////////////////////////////// gameboard module
+
 gameBoard = (() => {
     let gameboard = [];
     const axis1 = document.querySelector('[data-axis="1"]');
@@ -12,8 +13,8 @@ gameBoard = (() => {
     const axis8 = document.querySelector('[data-axis="8"]');
     const axis9 = document.querySelector('[data-axis="9"]');
 
-    declareWinner = (one, two, three, sign) => {
-        if (one.textContent === sign && two.textContent === sign && three.textContent === sign){    // Place this a seperate module
+    declareWinner = (one, two, three, sign) => {                            //  if 3 in a row, reveal winner. 
+        if (one.textContent === sign && two.textContent === sign && three.textContent === sign){    
             revealWinner(sign);
             let x = document.getElementById('win').childElementCount;
             if (x <= 1) {
@@ -44,26 +45,26 @@ gameBoard = (() => {
     }
         
 
-    choose = (winMark, loseMark) => {
-        let chosen = document.querySelectorAll(':hover')
-        let tempArray = Array.from(chosen);
-        let gridSquare = tempArray.pop()
-        let text = gridSquare.textContent;
-        let axis = gridSquare.getAttribute('data-axis')
-        gameboard.push(axis);
-        console.log(gameboard)
-        gridSquare.innerHTML = winMark
-        if (text === loseMark) {
-            gridSquare.innerHTML = loseMark;
+    choose = (winMark, loseMark) => {                       // this needs to be broken down and put into a new module
+        let chosen = document.querySelectorAll(':hover')   // make nodelist with each hovered element
+        let tempArray = Array.from(chosen);                // make array from nodelist
+        let gridSquare = tempArray.pop()                   // gridSquare is last item in array; i.e. whichever square is chosen
+        let text = gridSquare.textContent;                 // .........
+        let axis = gridSquare.getAttribute('data-axis')    
+        gameboard.push(axis);                              
+        console.log(gameboard)                             
+        gridSquare.innerHTML = winMark                    // .......... creates conditions for X or O to be placed in chosen square           
+        if (text === loseMark) {                          // prevents player from choosen an already taken square 
+            gridSquare.innerHTML = loseMark;               
         } 
-        declareWinner(axis1, axis2, axis3, winMark)
+        declareWinner(axis1, axis2, axis3, winMark)        
         declareWinner(axis4, axis5, axis6, winMark)
         declareWinner(axis7, axis8, axis9, winMark)
         declareWinner(axis1, axis4, axis7, winMark)
         declareWinner(axis2, axis5, axis8, winMark)
         declareWinner(axis3, axis6, axis9, winMark)
         declareWinner(axis7, axis5, axis3, winMark)
-        declareWinner(axis9, axis5, axis1, winMark)
+        declareWinner(axis9, axis5, axis1, winMark)         
     }  
         
     chooseX = () => {
@@ -75,7 +76,7 @@ gameBoard = (() => {
     }
             
         
-    revealWinner = (player) => {
+    revealWinner = (player) => {                                   // creates a new window that reveals the winner 
         let winnerDisplay = document.getElementById('win');
         winnerDisplay.style.display = 'flex';
         let para = document.createElement('p');
@@ -118,6 +119,7 @@ gameBoard = (() => {
 
 
 ////////////////////////////////////////////////////////// player module
+
 playerModule = (() => {
     const playerFactory = (name) => {
         return {
@@ -134,6 +136,13 @@ playerModule = (() => {
         console.log(player1.name, player2.name)  // How to get these values over to revealWinner function? 
     }
 
+  
+
+})();
+
+//////////////////////////////////////////////// display module
+
+displayController = (() => {
     return {
         // removes name submission screen on clicking submit button
         submit: function() {
@@ -142,16 +151,14 @@ playerModule = (() => {
           });
         }
     }
-
 })();
 
 
-playerModule.submit()         
+        
 
 gameBoard.addListeners();
 
-
-
+displayController.submit();
 
         
 
